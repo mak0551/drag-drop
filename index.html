@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag And Drop</title>
+    <link rel="stylesheet" href="drag&drop.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box1">
+            <div class="box" draggable="true"></div>
+            <div class="box" draggable="true"></div>
+            <div class="box" draggable="true"></div>
+            <div class="box" draggable="true"></div>
+        </div>
+        <div class="box2">
+            
+        </div>
+    </div>
+<script>
+    let boxs= document.getElementsByClassName("box");
+    let box1 = document.getElementsByClassName("box1")[0];
+    let box2 = document.getElementsByClassName("box2")[0];
+    for(box of boxs){
+        box.addEventListener("dragstart", function(e){
+           let selected = e.target;
+           box2.addEventListener("dragover", function(e){
+              e.preventDefault();
+           });
+           box2.addEventListener("drop",function(e){
+               box2.appendChild(selected);
+               selected=null;
+           })
+           box1.addEventListener("dragover", function(e){
+              e.preventDefault();
+           });
+           box1.addEventListener("drop",function(e){
+               box1.appendChild(selected);
+               selected=null;
+           })
+        })
+    }
+</script>
+</body>
+</html>
